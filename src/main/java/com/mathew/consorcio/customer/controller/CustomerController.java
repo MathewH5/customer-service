@@ -1,5 +1,6 @@
-package com.mathew.consorcio.customer;
+package com.mathew.consorcio.customer.controller;
 
+import com.mathew.consorcio.customer.model.Customer;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

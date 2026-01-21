@@ -1,4 +1,4 @@
-package com.mathew.consorcio.customer;
+package com.mathew.consorcio.customer.model;
 
 public record Customer(Long id, String name) {
 }
