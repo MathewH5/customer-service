@@ -1,0 +1,31 @@
+package com.mathew.consorcio.customer.service.mapper;
+
+import com.mathew.consorcio.customer.model.CreateCustomerRequest;
+import com.mathew.consorcio.customer.model.CustomerEntity;
+import com.mathew.consorcio.customer.model.CustomerResponse;
+import org.springframework.stereotype.Component;
+
+@Component
+public class CustomerMapper {
+    public CustomerEntity toEntity(CreateCustomerRequest request){
+        CustomerEntity entity = new CustomerEntity();
+        entity.setName(request.name());
+        entity.setEmail(request.email());
+        entity.setPhoneNumber(request.phoneNumber());
+        entity.setCpf(request.cpf());
+        entity.setBirthDate(request.brithDate());
+        return entity;
+    }
+
+    public CustomerResponse toResponse(CustomerEntity entity){
+        return new CustomerResponse(
+                entity.getId(),
+                entity.getName(),
+                entity.getEmail(),
+                entity.getPhoneNumber(),
+                entity.getBirthDate(),
+                entity.getCpf(),
+                entity.getCreatedAt()
+        );
+    }
+}

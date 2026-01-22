@@ -1,37 +1,40 @@
 package com.mathew.consorcio.customer.controller;
 
-import com.mathew.consorcio.customer.model.Customer;
+import com.mathew.consorcio.customer.model.CreateCustomerRequest;
+import com.mathew.consorcio.customer.model.CustomerResponse;
+import com.mathew.consorcio.customer.service.CustomerService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
 
+    private CustomerService service;
+
+    public CustomerController(CustomerService service) {
+        this.service = service;
+    }
     @GetMapping
-    public List<Customer> listCustomers(){
-        return List.of(
-                new Customer(1L, "Mathew"),
-                new Customer(2L, "Pavi")
-        );
+    public List<CustomerResponse> listCustomers(){
+        return service.getCustomers();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Customer> getCustomerByid(@PathVariable long id){
-        if (id == 1L) {
-            return ResponseEntity.ok(new Customer(1L, "Mathew"));
-        }
+    public ResponseEntity<CustomerResponse> getCustomerByid(@PathVariable Long id){
+        return service.getCustomerById(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
 
-        if (id == 2L) {
-            return ResponseEntity.ok(new Customer(2L, "Cliente Exemplo"));
-        }
-
-        return ResponseEntity.notFound().build(); // 404
+    @PostMapping
+    public ResponseEntity<CustomerResponse> creatCustomer(@RequestBody CreateCustomerRequest request){
+        CustomerResponse created = service.createCustomer(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
 }
