@@ -1,5 +1,6 @@
 package com.mathew.consorcio.customer.service;
 
+import com.mathew.consorcio.customer.exception.ConflictException;
 import com.mathew.consorcio.customer.model.CreateCustomerRequest;
 import com.mathew.consorcio.customer.model.CustomerResponse;
 import com.mathew.consorcio.customer.model.CustomerEntity;
@@ -38,9 +39,15 @@ public class CustomerService {
     }
 
     public CustomerResponse createCustomer (CreateCustomerRequest request){
+
+        if (repository.existsByCpf(request.cpf())){
+            throw new ConflictException("CPF ja cadastrado");
+        }
+
         CustomerEntity entity = mapper.toEntity(request);
         CustomerEntity saved = repository.save(entity);
 
         return mapper.toResponse(saved);
     }
+
 }
