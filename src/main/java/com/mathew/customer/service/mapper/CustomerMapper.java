@@ -1,13 +1,13 @@
-package com.mathew.consorcio.customer.service.mapper;
+package com.mathew.customer.service.mapper;
 
-import com.mathew.consorcio.customer.model.CreateCustomerRequest;
-import com.mathew.consorcio.customer.model.CustomerEntity;
-import com.mathew.consorcio.customer.model.CustomerResponse;
+import com.mathew.customer.model.CustomerRequest;
+import com.mathew.customer.model.CustomerEntity;
+import com.mathew.customer.model.CustomerResponse;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CustomerMapper {
-    public CustomerEntity toEntity(CreateCustomerRequest request){
+    public CustomerEntity toEntity(CustomerRequest request){
         CustomerEntity entity = new CustomerEntity();
         entity.setName(request.name());
         entity.setEmail(request.email());

@@ -1,4 +1,4 @@
-package com.mathew.consorcio.customer.model;
+package com.mathew.customer.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

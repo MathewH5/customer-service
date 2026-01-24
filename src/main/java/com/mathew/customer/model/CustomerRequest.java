@@ -1,8 +1,8 @@
-package com.mathew.consorcio.customer.model;
+package com.mathew.customer.model;
 
 import java.time.LocalDate;
 
-public record CreateCustomerRequest(
+public record CustomerRequest(
         String name,
         String email,
         String phoneNumber,

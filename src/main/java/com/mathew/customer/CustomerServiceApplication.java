@@ -1,4 +1,4 @@
-package com.mathew.consorcio.customer;
+package com.mathew.customer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

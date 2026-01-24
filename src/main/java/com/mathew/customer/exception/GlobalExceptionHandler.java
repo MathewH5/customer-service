@@ -1,6 +1,6 @@
-package com.mathew.consorcio.customer.exception;
+package com.mathew.customer.exception;
 
-import com.mathew.consorcio.customer.model.error.ApiErrorResponse;
+import com.mathew.customer.model.error.ApiErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

@@ -1,6 +1,6 @@
-package com.mathew.consorcio.customer.repository;
+package com.mathew.customer.repository;
 
-import com.mathew.consorcio.customer.model.CustomerEntity;
+import com.mathew.customer.model.CustomerEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CustomerJpaRepository extends JpaRepository<CustomerEntity, Long> {

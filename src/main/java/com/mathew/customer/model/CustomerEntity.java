@@ -1,5 +1,6 @@
-package com.mathew.consorcio.customer.model;
+package com.mathew.customer.model;
 
+import com.mathew.customer.service.enums.StatusEnum;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -23,7 +24,7 @@ public class CustomerEntity {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "birth_date")
+    @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
 
     @Column(nullable = false, unique = true, length = 11)
@@ -32,6 +33,9 @@ public class CustomerEntity {
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
+
+    @Column
+    private StatusEnum status;
 
     public CustomerEntity(){
     }
