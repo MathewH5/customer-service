@@ -2,10 +2,10 @@ package com.mathew.customer.model;
 
 import java.time.LocalDate;
 
-public record CustomerRequest(
+public record CreateCustomerRequest(
         String name,
         String email,
         String phoneNumber,
-        LocalDate brithDate,
+        LocalDate birthDate,
         String cpf
 ) {}

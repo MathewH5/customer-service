@@ -8,7 +8,7 @@ public record CustomerResponse(
         String name,
         String email,
         String phoneNumber,
-        LocalDate brithDate,
+        LocalDate birthDate,
         String cpf,
         LocalDateTime createdAt
         ) {

@@ -27,13 +27,14 @@ public class CustomerEntity {
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
 
-    @Column(nullable = false, unique = true, length = 11)
+    @Column(nullable = false, unique = true, length = 11, updatable = false)
     private String cpf;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
+    @Enumerated(EnumType.STRING)
     @Column
     private StatusEnum status;
 
@@ -96,6 +97,14 @@ public class CustomerEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public StatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusEnum status) {
+        this.status = status;
     }
 
 }

@@ -1,7 +1,8 @@
 package com.mathew.customer.controller;
 
-import com.mathew.customer.model.CustomerRequest;
+import com.mathew.customer.model.CreateCustomerRequest;
 import com.mathew.customer.model.CustomerResponse;
+import com.mathew.customer.model.UpdateCustomerRequest;
 import com.mathew.customer.service.CreateCustomerService;
 import com.mathew.customer.service.CustomerService;
 import com.mathew.customer.service.DeleteCustomerService;
@@ -34,22 +35,20 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomerResponse> getCustomerByid(@PathVariable Long id){
-        return service.getCustomerById(id)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    public CustomerResponse getCustomerById(@PathVariable Long id) {
+        return service.getCustomerById(id);
     }
 
     @PostMapping
-    public ResponseEntity<CustomerResponse> creatCustomer(@RequestBody CustomerRequest request){
+    public ResponseEntity<CustomerResponse> creatCustomer(@RequestBody CreateCustomerRequest request){
         CustomerResponse created = createCustomer.execute(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CustomerResponse> updateCustomer(@PathVariable Long id, @RequestBody CustomerRequest request){
+    public ResponseEntity<CustomerResponse> updateCustomer(@PathVariable Long id, @RequestBody UpdateCustomerRequest request){
          CustomerResponse update = updateCustomer.execute(id,request);
-         return ResponseEntity.status(HttpStatus.ACCEPTED).body(update);
+         return ResponseEntity.status(HttpStatus.OK).body(update);
     }
 
     @DeleteMapping("/{id}")

@@ -2,14 +2,12 @@ package com.mathew.customer.service;
 
 import com.mathew.customer.exception.CustomerNotFoundException;
 import com.mathew.customer.model.CustomerEntity;
-import com.mathew.customer.model.CustomerRequest;
+import com.mathew.customer.model.UpdateCustomerRequest;
 import com.mathew.customer.model.CustomerResponse;
 import com.mathew.customer.repository.CustomerJpaRepository;
 import com.mathew.customer.service.mapper.CustomerMapper;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class UpdateCustomerService {
@@ -22,13 +20,13 @@ public class UpdateCustomerService {
     }
 
     @Transactional
-    public CustomerResponse execute (Long id, CustomerRequest request){
+    public CustomerResponse execute (Long id, UpdateCustomerRequest request){
         CustomerEntity entity = repository.findById(id)
                 .orElseThrow(() -> new CustomerNotFoundException(id));
 
         entity.setName(request.name());
         entity.setEmail(request.email());
-        entity.setBirthDate(request.brithDate());
+        entity.setBirthDate(request.birthDate());
         entity.setPhoneNumber(request.phoneNumber());
 
         CustomerEntity saved = repository.save(entity);

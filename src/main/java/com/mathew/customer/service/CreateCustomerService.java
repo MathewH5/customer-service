@@ -1,9 +1,10 @@
 package com.mathew.customer.service;
 
-import com.mathew.customer.model.CustomerRequest;
+import com.mathew.customer.model.CreateCustomerRequest;
 import com.mathew.customer.model.CustomerEntity;
 import com.mathew.customer.model.CustomerResponse;
 import com.mathew.customer.repository.CustomerJpaRepository;
+import com.mathew.customer.service.enums.StatusEnum;
 import com.mathew.customer.service.mapper.CustomerMapper;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -22,10 +23,12 @@ public class CreateCustomerService {
     }
 
     @Transactional
-    public CustomerResponse execute(CustomerRequest request) {
+    public CustomerResponse execute(CreateCustomerRequest request) {
         validator.validate(request);
 
         CustomerEntity entity = mapper.toEntity(request);
+        entity.setStatus(StatusEnum.ACTIVE);
+
         CustomerEntity saved = repository.save(entity);
 
         return mapper.toResponse(saved);
