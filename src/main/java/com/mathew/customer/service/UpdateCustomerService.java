@@ -2,8 +2,8 @@ package com.mathew.customer.service;
 
 import com.mathew.customer.exception.CustomerNotFoundException;
 import com.mathew.customer.model.CustomerEntity;
-import com.mathew.customer.model.UpdateCustomerRequest;
 import com.mathew.customer.model.CustomerResponse;
+import com.mathew.customer.model.UpdateCustomerRequest;
 import com.mathew.customer.repository.CustomerJpaRepository;
 import com.mathew.customer.service.mapper.CustomerMapper;
 import jakarta.transaction.Transactional;
