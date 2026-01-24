@@ -21,7 +21,7 @@ Microserviço responsável por **gerenciar clientes (Customers)** na plataforma 
 - `cpf` é **único** (conflito → **409**)
 - `birthDate` é obrigatório (base para regras futuras de idade)
 - Cliente não encontrado → **404**
-- 
+
 ## Erros (padrão)
 
 As respostas de erro seguem um formato consistente:
