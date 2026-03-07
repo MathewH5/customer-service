@@ -31,3 +31,34 @@ As respostas de erro seguem um formato consistente:
   "status": 404,
   "message": "Customer with id 10 not found"
 }
+```
+
+## Service Caller Tracking
+
+To improve observability between microservices, customer-service captures which service initiated the request.
+
+Calling services include a custom header:
+
+```text
+X-Service-Caller
+```
+
+Example (subscription-service):
+
+```java
+webClient
+.get()
+.uri("/customer/{id}", customerId)
+.header("X-Service-Caller", "subscription-service")
+.retrieve()
+.bodyToMono(CustomerResponse.class)
+.block();
+```
+
+A Spring HandlerInterceptor in customer-service reads this header and logs the request.
+
+Example log:
+```
+subscription-service → GET /customer/1
+```
+This helps identify which microservice triggered each request, improving debugging and service observability.
