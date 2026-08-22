@@ -2,10 +2,5 @@ spring:
   application:
     name: customer-service
 
-    datasource:
-      url: ${DB_URL}
-      username: ${DB_USERNAME}
-      password: ${DB_PASSWORD}
-
 server:
   port: ${SERVER_PORT:8081}
