@@ -10,6 +10,27 @@ services:
       - "15432:5432"
     volumes:
       - customer_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U customer -d customerdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  customer-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: subscribo/customer-service:local
+    ports:
+      - "8081:8081"
+    environment:
+      SERVER_PORT: 8081
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/customerdb
+      SPRING_DATASOURCE_USERNAME: customer
+      SPRING_DATASOURCE_PASSWORD: customer123
+    depends_on:
+      postgres:
+        condition: service_healthy
 
 volumes:
   customer_pg_data:
